@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的访问计数器</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        #count {
+            font-size: 6rem;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+        }
+        .btn {
+            background-color: #fff;
+            color: #667eea;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        p {
+            margin-top: 30px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>👋 欢迎访问！</h1>
+    <h2>您是第 <span id="count">0</span> 位访客</h2>
+    
+    <button class="btn" onclick="addCount()">点我+1</button>
+    <button class="btn" onclick="resetCount()">重置</button>
+
+    <p>这是一个用 GitHub 托管的简单网页计数器。</p>
+
+    <script>
+        // 这个函数在页面加载时运行，从本地存储中读取之前的计数
+        function loadCount() {
+            let savedCount = localStorage.getItem('pageCount');
+            if (savedCount) {
+                document.getElementById('count').textContent = savedCount;
+            }
+        }
+
+        // 这个函数让计数+1
+        function addCount() {
+            let current = parseInt(document.getElementById('count').textContent);
+            current++;
+            document.getElementById('count').textContent = current;
+            localStorage.setItem('pageCount', current); // 保存到浏览器
+        }
+
+        // 这个函数将计数重置为0
+        function resetCount()
